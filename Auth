@@ -1,0 +1,425 @@
+
+
+
+That is a very good approach. Before taking a break, I will freeze the current design direction so that when you return, we continue from the same baseline.
+Consider this the AMS Project Baseline / Final Design Verdict (Version 1.0).
+________________________________________
+Authorization Management System (AMS)
+Final Product Definition
+1. Purpose of AMS
+Authorization Management System (AMS) is a web-based application designed to control and manage the complete lifecycle of personnel authorizations within the organization.
+The system will replace manual authorization processing and provide a controlled digital workflow for:
+•	Application submission
+•	Document verification
+•	Competency assessment
+•	HQC approval
+•	Authorization issuance
+•	Certificate generation
+•	Candidate acknowledgement
+•	Renewal
+•	Extension
+•	Amendment
+•	Loss/reissue
+•	Withdrawal
+•	Historical traceability
+________________________________________
+2. Final Outcome (The Actual Product)
+The final product is not a document system.
+The final product is:
+A live authorization control portal used by candidates, Quality Department personnel, reviewers, and HQC to manage authorization privileges from application to expiry.
+________________________________________
+3. Users of AMS
+3.1 Candidate / Auditor
+The person requesting authorization.
+Can:
+•	Login
+•	View profile
+•	Create application
+•	Upload documents
+•	Track application status
+•	View issued authorization
+•	Download certificate
+•	Read terms and conditions
+•	Provide acknowledgement
+Cannot:
+•	Approve own application
+•	Modify granted scope
+•	Modify assessment
+•	Issue certificate
+________________________________________
+3.2 QA Staff
+Quality Department personnel.
+Can:
+•	View all applications
+•	View authorization records
+•	Manage workflow
+•	Perform assigned activities based on capability
+________________________________________
+3.3 Delegated QA Reviewer
+Can perform:
+•	Document verification
+Example:
+Qualification review
+Training review
+Experience verification
+Cannot:
+•	Final approve authorization
+________________________________________
+3.4 Assessment Reviewer / Lead Auditor
+Can perform:
+•	Competency assessment
+•	TMA/QA/GEN/12c digital checklist
+•	Knowledge evaluation
+•	Understanding evaluation
+•	Ability evaluation
+•	Practical assessment
+Important:
+The same person may perform:
+Document Review + Assessment
+if they have the required capability.
+________________________________________
+3.5 HQC
+Head of Quality and Compliance.
+Final authority.
+Only HQC can:
+•	Approve authorization
+•	Reject authorization
+•	Decide final scope
+•	Decide limitations
+•	Issue authorization
+________________________________________
+3.6 System Administrator
+Controls:
+•	User creation
+•	Password reset
+•	Capability assignment
+•	System settings
+________________________________________
+4. Authentication Model
+Final decision:
+Quality Staff creates accounts.
+Process:
+Quality Staff
+      |
+      |
+Create Candidate Account
+      |
+      |
+Temporary Username & Password
+      |
+      |
+Candidate Login
+      |
+      |
+Candidate Changes Password
+If candidate forgets password:
+Candidate Request Reset
+
+↓
+
+Quality Administrator
+
+↓
+
+Generate New Password
+
+↓
+
+Share Securely
+________________________________________
+5. Authorization Application Types
+AMS will support exactly the SOP categories:
+Initial
+First authorization request.
+________________________________________
+Renewal
+Continuation of existing authorization.
+Conditions checked:
+•	Audit involvement
+•	Current training
+•	Competency requirements
+________________________________________
+Extension
+Adding additional scope.
+Example:
+Existing:
+Auditor - Airworthiness
+Request:
+Lead Auditor - IMS
+________________________________________
+Amendment
+Change of existing authorization information.
+Examples:
+•	Name
+•	Employee ID
+•	Personal details
+•	Scope reduction
+•	Authorization number change
+________________________________________
+Lost
+Replacement of lost authorization.
+________________________________________
+6. Authorization Workflow
+Final BPMN Logic:
+Candidate Creates Application
+
+          ↓
+
+Document Review
+
+          ↓
+
+Assessment
+
+          ↓
+
+HQC Final Review
+
+          ↓
+
+Approval
+
+          ↓
+
+Certificate Generation
+
+          ↓
+
+Email to Candidate
+
+          ↓
+
+Portal Availability
+
+          ↓
+
+Candidate Acknowledgement
+
+          ↓
+
+Authorization Active
+________________________________________
+7. Scope Management
+Final decision:
+One auditor can have multiple scopes.
+Example:
+Vijay Kumar Sahani
+
+
+Lead Auditor
+
+• Airworthiness
+• IMS
+
+
+Auditor
+
+• Operations
+AMS will not create separate certificates unnecessarily.
+One Certification Authorization can contain multiple privileges.
+________________________________________
+8. Assessment Module
+The paper checklist:
+TMA/QA/GEN/12c
+will become a digital assessment.
+Sections:
+1.	Qualification
+2.	Experience
+3.	Training
+4.	Extension Criteria
+5.	Renewal Criteria
+6.	Knowledge
+7.	Understanding
+8.	Ability
+9.	Practical Assessment
+10.	Remarks
+11.	Final Result
+Assessment result:
+•	Pass
+•	Fail
+•	Additional Training Required
+•	Follow-up Assessment Required
+________________________________________
+9. Certificate Generation
+After HQC approval:
+AMS automatically creates:
+•	CA Number
+•	Certificate PDF
+•	Validity dates
+•	Approved scope
+•	Limitations
+•	Terms and Conditions
+Certificate follows the approved template provided.
+________________________________________
+10. Candidate Acknowledgement
+Mandatory feature.
+Candidate must confirm:
+"I have read and understood the privileges, limitations and conditions of this authorization."
+AMS records:
+•	Candidate name
+•	Employee number
+•	Date/time
+•	Authorization number
+•	Version of terms acknowledged
+________________________________________
+11. Auditor Register
+AMS automatically maintains:
+TMA/QA/GEN/02
+No manual updating.
+Shows:
+•	Name
+•	Employee number
+•	Authorization number
+•	Category
+•	Scope
+•	Validity
+•	Status
+________________________________________
+12. Competency Profile
+Every auditor has a live profile.
+Example:
+Vijay Kumar Sahani
+
+Authorization:
+
+Lead Auditor
+Airworthiness
+IMS
+
+Auditor
+Operations
+
+
+Training:
+
+SMS       Current
+HF        Current
+DGA       Current
+
+
+Assessment:
+
+Passed
+
+CA Status:
+
+Active
+________________________________________
+13. Database Main Modules
+Final database structure:
+Users
+
+↓
+
+Capabilities
+
+↓
+
+Auditor Profile
+
+↓
+
+Applications
+
+↓
+
+Documents
+
+↓
+
+Document Reviews
+
+↓
+
+Assessments
+
+↓
+
+Assessment Checklist Responses
+
+↓
+
+HQC Approval
+
+↓
+
+Certification Authorization
+
+↓
+
+Privileges
+
+↓
+
+Acknowledgement
+
+↓
+
+Audit Trail
+________________________________________
+14. Security Principles
+AMS will include:
+•	Role/capability-based access
+•	Password security
+•	Audit trail
+•	No deletion of controlled records
+•	Version history
+•	Access logging
+________________________________________
+15. Reports
+Final reports:
+•	Active Authorization List
+•	Auditor Register
+•	Expiry Report
+•	Renewal Due Report
+•	Training Expiry Report
+•	Pending Applications
+•	Assessment Status
+•	HQC Approval Status
+•	Authorization History
+________________________________________
+16. Technology Direction (Frozen)
+Recommended implementation:
+Frontend
+React + TypeScript
+Backend
+ASP.NET Core Web API
+Database
+Microsoft SQL Server
+Authentication
+JWT / Enterprise Authentication
+PDF Generation
+Automated PDF certificate creation
+Email
+Corporate email integration
+________________________________________
+17. Development Sequence After Break
+When we restart, we continue from here:
+Phase 1
+Create AMS application foundation:
+•	Project structure
+•	Database
+•	Login
+•	User management
+•	Dashboard
+Phase 2
+Candidate portal
+Phase 3
+QA portal
+Phase 4
+Assessment module
+Phase 5
+HQC approval
+Phase 6
+Certificate generation
+Phase 7
+Reports and deployment
+________________________________________
+Final Verdict
+The final product is:
+Authorization Management System (AMS) — A controlled digital platform that manages the complete authorization lifecycle of personnel, ensuring competency verification, approval control, privilege management, certificate issuance, and regulatory traceability.
+The current design is now considered the baseline version (AMS v1.0).
+When you return, we continue from:
+"AMS Development Phase 1 — Creating the actual application structure and code."
+No need to revisit the SOP, workflow, or requirements unless you intentionally decide to introduce a new business requirement. The baseline is frozen.
+
